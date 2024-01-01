@@ -1,0 +1,52 @@
+<div class="container my-5">
+  @if(showFirstNameError){
+  <div class="alert alert-danger" role="alert">Invalid driver first name</div>
+  } @if(showFirstNameError){
+  <div class="alert alert-danger" role="alert">Invalid driver last name</div>
+  }
+  <div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="py-2">Edit Driver</h2>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-4">
+      <div class="border p-3 row">
+        <div class="form-floating py-2 col-12 col-md-6">
+          <input
+            class="form-control border-0 shadow"
+            type="text"
+            [(ngModel)]="request.firstName"
+          />
+          <label class="ms-2">First name</label>
+        </div>
+        <div class="form-floating py-2 col-12 col-md-6">
+          <input
+            class="form-control border-0 shadow"
+            type="text"
+            [(ngModel)]="request.lastName"
+          />
+          <label class="ms-2">Last name</label>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-12 col-md-6">
+          <button class="btn btn-primary form-control" (click)="Edit()">
+            Edit
+          </button>
+        </div>
+        <div class="col-12 col-md-6 mt-1 mt-lg-0">
+          <button
+            class="btn btn-outline-primary border form-control"
+            (click)="BackToList()"
+          >
+            Back to List
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

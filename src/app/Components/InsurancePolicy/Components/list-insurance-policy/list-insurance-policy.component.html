@@ -1,0 +1,78 @@
+<div class="container my-5">
+  <div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+      <div class="row pb-3">
+        <div class="col-12 col-md-6">
+          <h2 class="py-2">Insurance Policy List</h2>
+        </div>
+
+        <div class="col-12 col-md-6 text-md-end">
+          <button class="btn btn-primary" (click)="NavigateToCreate()">
+            <i class="bi bi-plus-circle"></i> Create New Insurance Policy
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 my-2">
+        <div class="row">
+          <div class="col-12 col-md-9">
+            <input
+              placeholder="Search by name..."
+              class="form-control"
+              type="text"
+              [(ngModel)]="searchTerm"
+            />
+          </div>
+          <div class="col-12 col-md-3">
+            <button
+              class="text-white btn btn-warning w-100"
+              (click)="searchTerm = ''"
+            >
+              <i class="bi bi-x-circle-fill"></i>
+              Reset Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th class="text-white" style="width: 6%">Id</th>
+            <th class="text-white" style="width: 47%">Provider</th>
+            <th class="text-white" style="width: 47%">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(policy of insurancePolicies; track $index){
+          @if(policy.policyProvider.toLowerCase().includes(searchTerm)){
+          <tr>
+            <td class="text-white">{{ policy.id }}</td>
+            <td class="text-white">{{ policy.policyProvider }}</td>
+            <td>
+              <div class="w-100 btn-group" role="group">
+                <button
+                  class="btn btn-primary rounded-start"
+                  (click)="NavigateToEdit(policy.id)"
+                >
+                  <i class="bi bi-pencil-square"></i> Edit
+                </button>
+                <button
+                  class="btn btn-danger rounded-end"
+                  (click)="Delete(policy.id)"
+                >
+                  <i class="bi bi-trash-fill"></i> Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+          } } @empty {
+          <tr>
+            <td colspan="3" class="text-center text-white">empty list</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
